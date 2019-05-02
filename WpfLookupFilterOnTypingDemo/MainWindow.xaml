@@ -21,6 +21,7 @@
                    Text="Numbers"/>
         <ComboBox Grid.Column="1"
                   Grid.Row="0"
+                  IsEditable="True"
                   SelectedValuePath="Key"
                   DisplayMemberPath="Value"
                   ItemsSource="{Binding NumbersLookup}"
