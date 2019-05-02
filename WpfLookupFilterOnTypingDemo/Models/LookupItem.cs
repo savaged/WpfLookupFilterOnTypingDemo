@@ -2,7 +2,7 @@
 
 namespace WpfLookupFilterOnTypingDemo.Models
 {
-    public class LookupItem : ObservableObject
+    public class LookupItem : ObservableObject, ILookupItem
     {
         private readonly IDictionary<int, string> _lookup;
         private int _key;
@@ -28,7 +28,7 @@ namespace WpfLookupFilterOnTypingDemo.Models
                 _key = value;
                 RaisePropertyChanged();
 
-                Value = _lookup?[_key] ?? string.Empty;
+                Value = GetValueByKey(_key);
             }
         }
 
@@ -40,6 +40,12 @@ namespace WpfLookupFilterOnTypingDemo.Models
                 _value = value;
                 RaisePropertyChanged();
             }
+        }
+
+        public string GetValueByKey(int key)
+        {
+            var value = _lookup?[key] ?? string.Empty;
+            return value;
         }
     }
 }

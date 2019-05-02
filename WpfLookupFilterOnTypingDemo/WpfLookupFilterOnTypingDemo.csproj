@@ -55,6 +55,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Data\SampleDatabase.cs" />
+    <Compile Include="Models\ILookupItem.cs" />
     <Compile Include="Models\SampleModel.cs" />
     <Compile Include="ObservableObject.cs" />
     <Compile Include="Services\ILookupService.cs" />

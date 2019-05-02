@@ -9,11 +9,11 @@
     <Grid Margin="20">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="60"/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="150"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
-            <RowDefinition Height="10"/>
+            <RowDefinition Height="50"/>
             <RowDefinition Height="30"/>
         </Grid.RowDefinitions>
         <TextBlock Grid.Column="0"
@@ -31,6 +31,6 @@
                    Text="Selected"/>
         <TextBox Grid.Column="1"
                  Grid.Row="2"
-                 Text="{Binding SelectedModel.CountName}"/>
+                 Text="{Binding SelectedModel.CountName, Mode=OneWay}"/>
     </Grid>
 </Window>

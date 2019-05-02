@@ -8,8 +8,9 @@ namespace WpfLookupFilterOnTypingDemo
     {
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-            var modelService = new SampleModelService();
             var lookupService = new LookupService();
+            var modelService = new SampleModelService(
+                lookupService);
 
             var viewModel = new MainViewModel(
                 modelService,

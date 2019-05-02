@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
+using System.Data;
 using System.Linq;
+using WpfLookupFilterOnTypingDemo.Data;
 using WpfLookupFilterOnTypingDemo.Models;
 
 namespace WpfLookupFilterOnTypingDemo.Services
@@ -8,14 +10,25 @@ namespace WpfLookupFilterOnTypingDemo.Services
     {
         private IList<SampleModel> _index;
 
-        public SampleModelService()
+        public object SampleDatbase { get; }
+
+        public SampleModelService(
+            ILookupService lookupService)
         {
-            _index = new List<SampleModel>
+            _index = new List<SampleModel>();
+            var dt = SampleDatabase.Default.SampleTable;
+            foreach (DataRow r in dt.Rows)
             {
-                new SampleModel { Id = 1, Name = "Apple", CountId = 2 },
-                new SampleModel { Id = 2, Name = "Pear", CountId = 4 },
-                new SampleModel { Id = 3, Name = "Orange", CountId = 1 }
-            };
+                var countId = (int)r["CountId"];
+                var m = new SampleModel(
+                    (int)r["Id"],
+                    (string)r["Name"],
+                    countId,
+                    lookupService
+                        .GetLookupItem("NumbersLookup", countId)
+                );
+                _index.Add(m);                
+            }
         }
 
         public SampleModel Show(int id)

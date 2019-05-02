@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using WpfLookupFilterOnTypingDemo.Models;
 
 namespace WpfLookupFilterOnTypingDemo.Services
 {
@@ -28,6 +29,13 @@ namespace WpfLookupFilterOnTypingDemo.Services
         public IDictionary<int, string> GetLookup(string lookupName)
         {
             var value = _index[lookupName];
+            return value;
+        }
+
+        public ILookupItem GetLookupItem(string lookupName, int key)
+        {
+            var lookup = GetLookup(lookupName);
+            var value = new LookupItem(key, lookup);
             return value;
         }
     }
