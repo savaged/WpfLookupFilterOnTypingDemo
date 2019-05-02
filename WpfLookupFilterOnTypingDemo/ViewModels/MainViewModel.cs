@@ -11,19 +11,19 @@ namespace WpfLookupFilterOnTypingDemo.ViewModels
 
         public MainViewModel()
         {
-            NumbersLookup = new List<LookupItem>
+            NumbersLookup = new Dictionary<int, string>
             {
-                new LookupItem(1, "One"),
-                new LookupItem(2, "Two"),
-                new LookupItem(3, "Three"),
-                new LookupItem(4, "Four"),
-                new LookupItem(5, "Five"),
-                new LookupItem(6, "Six")
+                { 1, "One" },
+                { 2, "Two" },
+                { 3, "Three" },
+                { 4, "Four" },
+                { 5, "Five" },
+                { 6, "Six" }
             };
             NumberLookupSelected = new LookupItem();
         }
 
-        public IList<LookupItem> NumbersLookup { get; }
+        public IDictionary<int, string> NumbersLookup { get; }
 
         public int NumberSelection
         {
@@ -34,7 +34,7 @@ namespace WpfLookupFilterOnTypingDemo.ViewModels
                 RaisePropertyChanged();
 
                 NumberLookupSelected = 
-                    NumbersLookup.SingleOrDefault(l => l.Key == value);
+                    new LookupItem(value, NumbersLookup);
             }
         }
 
