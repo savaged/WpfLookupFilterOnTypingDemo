@@ -17,7 +17,8 @@ namespace WpfLookupFilterOnTypingDemo.ViewModels
                 new LookupItem(2, "Two"),
                 new LookupItem(3, "Three"),
                 new LookupItem(4, "Four"),
-                new LookupItem(5, "Five")
+                new LookupItem(5, "Five"),
+                new LookupItem(6, "Six")
             };
             NumberLookupSelected = new LookupItem();
         }
