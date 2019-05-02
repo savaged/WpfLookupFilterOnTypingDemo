@@ -19,8 +19,9 @@ namespace WpfLookupFilterOnTypingDemo.Data
             t.Columns.Add("Name", typeof(string));
             t.Columns.Add("CountId", typeof(int));
             t.Rows.Add(new object[] { 1, "Apple", 2 });
-            t.Rows.Add(new object[] { 2, "Pear", 2 });
-            t.Rows.Add(new object[] { 3, "Orange", 2 });
+            t.Rows.Add(new object[] { 2, "Pear", 5 });
+            t.Rows.Add(new object[] { 3, "Orange", 1 });
+            t.Rows.Add(new object[] { 4, "Plum", 3 });
             SampleTable = t;
 
             t = new DataTable();

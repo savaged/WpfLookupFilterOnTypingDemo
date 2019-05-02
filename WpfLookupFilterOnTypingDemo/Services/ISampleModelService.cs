@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using WpfLookupFilterOnTypingDemo.Models;
 
 namespace WpfLookupFilterOnTypingDemo.Services
 {
     public interface ISampleModelService
     {
-        IList<SampleModel> Index();
-        SampleModel Show(int id);
+        Task<IList<SampleModel>> GetIndexAsync();
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Threading.Tasks;
 using WpfLookupFilterOnTypingDemo.Data;
 using WpfLookupFilterOnTypingDemo.Models;
 
@@ -8,6 +9,7 @@ namespace WpfLookupFilterOnTypingDemo.Services
 {
     public class SampleModelService : ISampleModelService
     {
+        private readonly ILookupService _lookupService;
         private IList<SampleModel> _index;
 
         public object SampleDatbase { get; }
@@ -16,29 +18,28 @@ namespace WpfLookupFilterOnTypingDemo.Services
             ILookupService lookupService)
         {
             _index = new List<SampleModel>();
-            var dt = SampleDatabase.Default.SampleTable;
-            foreach (DataRow r in dt.Rows)
+            _lookupService = lookupService; 
+        }
+
+        public async Task<IList<SampleModel>> GetIndexAsync()
+        {
+            await Task.Run(() =>
             {
-                var countId = (int)r["CountId"];
-                var m = new SampleModel(
-                    (int)r["Id"],
-                    (string)r["Name"],
-                    countId,
-                    lookupService
-                        .GetLookupItem("NumbersLookup", countId)
-                );
-                _index.Add(m);                
-            }
-        }
-
-        public SampleModel Show(int id)
-        {
-            var value = _index.SingleOrDefault(s => s.Id == id);
-            return value;
-        }
-
-        public IList<SampleModel> Index()
-        {
+                var dt = SampleDatabase
+                    .Default.SampleTable;
+                foreach (DataRow r in dt.Rows)
+                {
+                    var countId = (int)r["CountId"];
+                    var m = new SampleModel(
+                        (int)r["Id"],
+                        (string)r["Name"],
+                        countId,
+                        _lookupService.GetLookupItem(
+                            "NumbersLookup", countId)
+                    );
+                    _index.Add(m);
+                }
+            });
             return _index;
         }
     }

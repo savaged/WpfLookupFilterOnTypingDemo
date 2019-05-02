@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
+using WpfLookupFilterOnTypingDemo.ViewModels;
 
 namespace WpfLookupFilterOnTypingDemo
 {
@@ -7,6 +9,12 @@ namespace WpfLookupFilterOnTypingDemo
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private async void OnSourceInitialized(object sender, EventArgs e)
+        {
+            var vm = DataContext as MainViewModel;
+            await vm?.LoadAsync();
         }
     }
 }
