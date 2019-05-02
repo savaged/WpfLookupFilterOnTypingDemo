@@ -25,12 +25,12 @@
                   SelectedValuePath="Key"
                   DisplayMemberPath="Value"
                   ItemsSource="{Binding NumbersLookup}"
-                  SelectedValue="{Binding NumberSelection}"/>
+                  SelectedValue="{Binding SelectedModel.CountId}"/>
         <TextBlock Grid.Column="0"
                    Grid.Row="2"
                    Text="Selected"/>
         <TextBox Grid.Column="1"
                  Grid.Row="2"
-                 Text="{Binding NumberLookupSelected.Value}"/>
+                 Text="{Binding SelectedModel.CountName}"/>
     </Grid>
 </Window>

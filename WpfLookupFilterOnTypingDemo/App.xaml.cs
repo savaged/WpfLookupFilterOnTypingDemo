@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using WpfLookupFilterOnTypingDemo.Services;
 using WpfLookupFilterOnTypingDemo.ViewModels;
 
 namespace WpfLookupFilterOnTypingDemo
@@ -7,9 +8,16 @@ namespace WpfLookupFilterOnTypingDemo
     {
         private void Application_Startup(object sender, StartupEventArgs e)
         {
+            var modelService = new SampleModelService();
+            var lookupService = new LookupService();
+
+            var viewModel = new MainViewModel(
+                modelService,
+                lookupService);
+
             var view = new MainWindow
             {
-                DataContext = new MainViewModel()
+                DataContext = viewModel
             };
             view.Show();
         }
